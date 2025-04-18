@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login/Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adjustment2.css') }}">
+
+    <script>
+        function toggleForm() {
+            var loginForm = document.getElementById("loginForm");
+            var registerForm = document.getElementById("registerForm");
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                registerForm.style.display = "none";
+            } else {
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+            }
+        }
+
+        function registerUser(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            // Simulate registration logic (you can replace this with actual logic like sending data via AJAX)
+            alert("You are successfully registered.");
+            // After registration, toggle to login form
+            toggleForm();
+        }
+    </script>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <input type="email" name="email" placeholder="Email" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="remember">
+                    <input type="checkbox" id="Remember">
+                    <label for="Remember">Remember me</label>
+                </div>
+                <label id="Register" for="Register" onclick="toggleForm()" style="cursor: pointer; color: lightblue;">Register</label>
+                <div class="submit">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Register Form (Initially hidden) -->
+        <div id="registerForm" style="display: none;">
+            <h2>Register</h2>
+            <form action="/register" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <br>
+                <input type="tel" name="mobile" pattern="[0-9]{10}" placeholder="Mobile No." required>
+                <br>
+                <input type="email" name="email" placeholder="Email" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" required>
+                <br>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <br>
+                <div class="submit">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

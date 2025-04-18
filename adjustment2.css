@@ -1,0 +1,223 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+    background-image: url('../images/Designer 1.jpeg');
+    /* Correct relative path */
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 600px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    border-radius: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    color: lightblue;
+    text-align: center;
+    margin-top: 30px;
+    /* Space below logo */
+}
+
+
+form input {
+    width: 70%;
+    height: 50px;
+    margin-right: 50%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: white;
+    /* Ensures text remains white */
+    padding: 0 10px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 15px;
+}
+
+form input::placeholder {
+    color: lightgray;
+}
+
+/* Ensure autofill text color remains white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    background-color: none !important;
+    transition: background-color 5000s ease-in-out 0s;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    /* Fixes white text issue */
+}
+
+/* Dropdown text (for autofill suggestions) */
+input:-webkit-autofill::first-line {
+    color: white !important;
+    /* Ensures first-line text is white */
+}
+
+.apartment-type {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.apartment-type button {
+    padding: 5px 15px;
+    font-size: 12px;
+    border: 2px solid #6a0dad;
+    border-radius: 15px;
+    background-color: #efe6fd;
+    color: #6a0dad;
+    cursor: pointer;
+    text-align: center;
+    width: 110px;
+    box-sizing: border-box;
+}
+
+.apartment-type button.active {
+    background-color: #d5bdfc;
+}
+
+.submit button {
+    padding: 5px 15px;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.submit button:hover {
+    background-color: #d5bdfc;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.container .remember {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-top: 15px;
+    font-size: 16px;
+    color: lightblue;
+}
+
+.container .remember input {
+    margin-right: 5px;
+    width: 20px;
+    height: 12px;
+}
+
+#Register {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    margin-top: 15px;
+    font-size: 16px;
+    color: lightblue;
+    position: absolute;
+    top: 220px;
+    right: 30px;
+}
+
+#Register:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logo-container img {
+    width: 350px;
+    /* Adjust the size of the logo */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        margin-top: 30px;
+    }
+
+    .logo-container img {
+        width: 200px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 15px;
+        margin-top: 15px;
+    }
+}
+
+/* ✅ Ensure Desktop View on "Desktop Site" Mode */
+@media (min-width: 1024px),
+(min-device-width: 1024px) {
+    .logo-container {
+        margin-top: 40px;
+    }
+
+    .logo-container img {
+        width: 250px;
+        /* Desktop size */
+    }
+
+    .container {
+        width: 600px;
+        /* Full desktop width */
+        margin-top: 30px;
+    }
+}
+
+.profile-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+.profile-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: -5%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding: 20px;
+    z-index: 200;
+    color: lightblue;
+}
+.profile-sidebar.open {
+    width: 300px;
+}
+.profile-sidebar .close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}

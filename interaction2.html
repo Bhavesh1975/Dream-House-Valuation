@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dream House Valuation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adjustment2.css') }}">
+</head>
+<body>
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+
+    <!-- Profile Sidebar Toggle -->
+    <div class="profile-button" onclick="toggleSidebar()">
+        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Profile">
+    </div>
+
+    <!-- Profile Sidebar -->
+    <div id="profileSidebar" class="profile-sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <h2>Profile</h2>
+        <p>{{ user.name }}</p>
+        <p>{{ user.email }}</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <form>
+            <input type="text" name="city" placeholder="City" required><br>
+            <input type="text" name="area" placeholder="Area" required><br>
+            <input type="text" name="Sqr feet" placeholder="Sqr Feet" required>
+
+            <label>Property Type</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectType(this)">Apartment</button>
+                <button type="button" onclick="selectType(this)">Independent House</button>
+                <button type="button" onclick="selectType(this)">Independent Floor</button>
+                <button type="button" onclick="selectType(this)">Villa</button>
+            </div>
+            <br>
+            <label for="Bedroom">Bedroom</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectType(this)">1</button>
+                <button type="button" onclick="selectType(this)">2</button>
+                <button type="button" onclick="selectType(this)">3</button>
+                <button type="button" onclick="selectType(this)">4</button>
+            </div>
+            <br>
+            <label for="furnished">Furnished</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectType(this)">Fully Furnished</button>
+                <button type="button" onclick="selectType(this)">Semi Furnished</button>
+                <button type="button" onclick="selectType(this)">Unfurnished</button>
+            </div>
+            <br>
+            <div class="submit">
+                <button value="Estimate value">Estimate Value</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("profileSidebar");
+            sidebar.classList.toggle("open");
+        }
+
+        function selectType(button) {
+            let parentContainer = button.parentElement;
+            parentContainer.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+    </script>
+</body>
+</html>
