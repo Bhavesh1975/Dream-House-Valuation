@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
     <title>Dream House Valuation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/adjustment2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
     <!-- Logo -->
@@ -20,58 +24,143 @@
     <div id="profileSidebar" class="profile-sidebar">
         <span class="close-btn" onclick="toggleSidebar()">&times;</span>
         <h2>Profile</h2>
-        <p>{{ user.name }}</p>
+        <p>{{ user.fullname }}</p>
         <p>{{ user.email }}</p>
+        <p>{{ user.mobile }}</p>
+        <p><a href="{{ url_for('history') }}">History</a></p>
         <a href="{{ url_for('logout') }}">Logout</a>
+
+        <div class="social-link">
+            <p><a href="https://www.linkedin.com/in/bhavesh-shah-95b0712a6" target="_blank">
+                <i class="fab fa-linkedin-in"></i> LinkedIn</a></p>
+            <p><a href="https://github.com/Bhavesh1975" target="_blank">
+                <i class="fab fa-github"></i> GitHub</a></p>
+            <p><a href="mailto:bsbhavesh1975@gmail.com">
+                <i class="fas fa-envelope"></i> Email</a></p>
+        </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
-        <form>
-            <input type="text" name="city" placeholder="City" required><br>
-            <input type="text" name="area" placeholder="Area" required><br>
-            <input type="text" name="Sqr feet" placeholder="Sqr Feet" required>
+        <form action="{{ url_for('house_data') }}" method="POST" onsubmit="return validateForm()">
 
+            <input type="text" name="city" placeholder="City" required><br>
+            <input type="text" name="square_feet" placeholder="Sqr Feet" required><br>
+            <input type="text" name="year_built" placeholder="Year Built" required><br>
+            <input type="text" name="floor_no" placeholder="Floor Number" required><br>
+            <input type="text" name="age_of_property" placeholder="Age of Property" required><br>
+            <input type="text" name="nearby_schools" placeholder="Nearby Schools" required><br>
+            <input type="text" name="nearby_hospitals" placeholder="Nearby Hospitals" required><br>
+            <input type="text" name="facing" placeholder="Facing" required><br>
+            <input type="text" name="owner_type" placeholder="Owner Type" required><br>
+
+            <!-- Property Type -->
+            <input type="hidden" name="property_type" id="property_type" value="">
             <label>Property Type</label>
             <div class="apartment-type">
-                <button type="button" onclick="selectType(this)">Apartment</button>
-                <button type="button" onclick="selectType(this)">Independent House</button>
-                <button type="button" onclick="selectType(this)">Independent Floor</button>
-                <button type="button" onclick="selectType(this)">Villa</button>
+                <button type="button" onclick="selectAndSet(this, 'property_type')">Apartment</button>
+                <button type="button" onclick="selectAndSet(this, 'property_type')">Independent House</button>
+                <button type="button" onclick="selectAndSet(this, 'property_type')">Independent Floor</button>
+                <button type="button" onclick="selectAndSet(this, 'property_type')">Villa</button>
             </div>
-            <br>
-            <label for="Bedroom">Bedroom</label>
+
+            <!-- Bedroom -->
+            <input type="hidden" name="bedroom" id="bedroom" value="">
+            <label>Bedroom</label>
             <div class="apartment-type">
-                <button type="button" onclick="selectType(this)">1</button>
-                <button type="button" onclick="selectType(this)">2</button>
-                <button type="button" onclick="selectType(this)">3</button>
-                <button type="button" onclick="selectType(this)">4</button>
+                <button type="button" onclick="selectAndSet(this, 'bedroom')">1</button>
+                <button type="button" onclick="selectAndSet(this, 'bedroom')">2</button>
+                <button type="button" onclick="selectAndSet(this, 'bedroom')">3</button>
+                <button type="button" onclick="selectAndSet(this, 'bedroom')">4</button>
             </div>
-            <br>
-            <label for="furnished">Furnished</label>
+
+            <!-- Furnished -->
+            <input type="hidden" name="furnished" id="furnished" value="">
+            <label>Furnished</label>
             <div class="apartment-type">
-                <button type="button" onclick="selectType(this)">Fully Furnished</button>
-                <button type="button" onclick="selectType(this)">Semi Furnished</button>
-                <button type="button" onclick="selectType(this)">Unfurnished</button>
+                <button type="button" onclick="selectAndSet(this, 'furnished')">Fully Furnished</button>
+                <button type="button" onclick="selectAndSet(this, 'furnished')">Semi Furnished</button>
+                <button type="button" onclick="selectAndSet(this, 'furnished')">Unfurnished</button>
             </div>
-            <br>
+
+            <!-- Transport -->
+            <input type="hidden" name="public_transport_accessibility" id="public_transport_accessibility" value="">
+            <label>Transport Accessibility</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectAndSet(this, 'public_transport_accessibility')">High</button>
+                <button type="button" onclick="selectAndSet(this, 'public_transport_accessibility')">Medium</button>
+                <button type="button" onclick="selectAndSet(this, 'public_transport_accessibility')">Low</button>
+            </div>
+
+            <!-- Amenities -->
+            <input type="hidden" name="amenities" id="amenities" value="">
+            <label>Amenities</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectAndSet(this, 'amenities')">High</button>
+                <button type="button" onclick="selectAndSet(this, 'amenities')">Medium</button>
+                <button type="button" onclick="selectAndSet(this, 'amenities')">Low</button>
+            </div>
+
+            <!-- Parking -->
+            <input type="hidden" name="parking_space" id="parking_space" value="">
+            <label>Parking Space</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectAndSet(this, 'parking_space')">Yes</button>
+                <button type="button" onclick="selectAndSet(this, 'parking_space')">No</button>
+            </div>
+
+            <!-- Security -->
+            <input type="hidden" name="security" id="security" value="">
+            <label>Security</label>
+            <div class="apartment-type">
+                <button type="button" onclick="selectAndSet(this, 'security')">Yes</button>
+                <button type="button" onclick="selectAndSet(this, 'security')">No</button>
+            </div>
+
             <div class="submit">
-                <button value="Estimate value">Estimate Value</button>
+                <button type="submit">Estimate Value</button>
             </div>
+
+            <!-- Prediction Result: shown just below the button -->
+            {% if predicted_price %}
+            <div class="prediction-result" style="margin-top: 20px; text-align: center;">
+                <h3 style="color: #4B0082;">Estimated Price: ₹ {{ predicted_price }}</h3>
+            </div>
+            {% elif error %}
+            <div class="error-message" style="margin-top: 20px; text-align: center;">
+                <p>Error: {{ error }}</p>
+            </div>
+            {% endif %}
         </form>
     </div>
 
+    <!-- JavaScript -->
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("profileSidebar");
             sidebar.classList.toggle("open");
         }
 
-        function selectType(button) {
-            let parentContainer = button.parentElement;
-            parentContainer.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+        function selectAndSet(button, hiddenInputId) {
+            const container = button.parentElement;
+            container.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            document.getElementById(hiddenInputId).value = button.innerText.trim();
+        }
+
+        function validateForm() {
+            const requiredFields = ['property_type', 'bedroom', 'furnished', 'public_transport_accessibility', 'amenities', 'parking_space', 'security'];
+            for (let fieldId of requiredFields) {
+                const val = document.getElementById(fieldId).value;
+                if (!val) {
+                    alert('Please select a value for ' + fieldId.replace(/_/g, ' '));
+                    return false;  // prevent form submit
+                }
+            }
+            return true;  // all good, submit form
         }
     </script>
+
 </body>
+
 </html>

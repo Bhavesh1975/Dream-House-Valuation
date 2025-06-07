@@ -3,13 +3,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
-    margin: 0;
-    background: #f0f0f0;
-    background-image: url('../images/Designer 1.jpeg');
-    /* Correct relative path */
+    min-height: 100vh;
+    background-image: url('../images/Designer1.jpeg');
+    /* Check this path */
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .container {
@@ -191,6 +191,7 @@ input:-webkit-autofill::first-line {
     right: 20px;
     cursor: pointer;
 }
+
 .profile-button img {
     width: 40px;
     height: 40px;
@@ -211,13 +212,104 @@ input:-webkit-autofill::first-line {
     z-index: 200;
     color: lightblue;
 }
+
 .profile-sidebar.open {
     width: 300px;
+    
 }
+
+.profile-sidebar a{
+    color: lightblue;
+    text-decoration: none;
+}
+
+.profile-sidebar a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
 .profile-sidebar .close-btn {
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 24px;
     cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: lightblue;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    font-weight: 650px;
+    color:#fff;
+}
+
+tr{
+    color: #fff;
+}
+
+.container2 {
+    width: fit-content; /* or 100% if you want it to stretch full screen */
+    margin: 0 auto;      /* to center it */
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    overflow-x: auto;   /* adds scroll if table is too wide */
+    padding: 20px;
+}
+
+.social-link {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 18px;
+}
+
+.social-link a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-link a:hover {
+  color: #0077b5; /* LinkedIn blue */
+}
+
+.prediction-result {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+}
+
+.error-message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
+    text-align: center;
 }

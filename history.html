@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction History - Dream House Valuation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adjustment2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+
+    <!-- Profile Sidebar Toggle -->
+    <div class="profile-button" onclick="toggleSidebar()">
+        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Profile">
+    </div>
+
+    <h1>Prediction History</h1>
+    <!-- Profile Sidebar -->
+    <div id="profileSidebar" class="profile-sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <h2>Profile</h2>
+        <p>{{ user.fullname }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{user.mobile }}</p>
+        <p><a href="{{url_for('interaction')}}">Home</a></p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container2">
+        {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Area (Sq.Ft)</th>
+                    <th>Bedroom</th>
+                    <th>Property Type</th>
+                    <th>Furnished</th>
+                    <th>Year Built</th>
+                    <th>Floor No</th>
+                    <th>Property Age</th>
+                    <th>Nearby Schools</th>
+                    <th>Nearby Hospitals</th>
+                    <th>Public Transport</th>
+                    <th>Parking</th>
+                    <th>Security</th>
+                    <th>Amenities</th>
+                    <th>Facing</th>
+                    <th>Owner Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                    <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No history data found.</p>
+        {% endif %}
+    </div>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("profileSidebar");
+            sidebar.classList.toggle("open");
+        }
+    </script>
+
+</body>
+
+</html>
